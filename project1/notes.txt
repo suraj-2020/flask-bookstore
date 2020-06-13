@@ -1,0 +1,1 @@
+localstorage keyword in js lets us store data in local machine

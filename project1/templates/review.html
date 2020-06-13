@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <style>
+  .navbar li {
+    padding-right:650px;
+
+  }
+  </style>
+  </head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/books">GOODREADS</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/logout">SIGN OUT  <span class="sr-only">(current)</span></a>
+      </li>
+
+    <form class="form-inline my-2 my-lg-0" action="/books" method="post">
+      <input class="form-control mr-sm-2" type="text" name="sir" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+<!-- <form action="/books/{{bname}}" method="post" >
+<input type="text" name="review">
+<button type="submit">Submit</button>
+</form> -->
+<h2>Details of the book</h2>
+{%if l%}
+<h3>Isbn : </h3>{{l.isbn}}<br>
+<h3>Title: </h3>{{l.title}}<br>
+<h3>Author: </h3>{{l.author}}<br>
+<h3>Year: </h3>{{l.year}}<br>
+{%endif%}
+{%if ret%}
+<h3>average rating on Goodreads= </h3><h3>{{ret['average_rating']}}</h3><br>
+<h3>number of rating on Goodreads= </h3><h3>{{ret['number_ratings']}}</h3>
+{%endif%}
+{%if lis%}
+<h3>Reviews of this book by previous users</h3>
+{% for i in lis%}
+{{i[0]}}<p>-</p>{{i[1]}}
+{%endfor%}
+{%endif%}
+<form action="/books/{{bname}}" method="post" >
+    <textarea type="text" name="review" rows="10" cols="20" placeholder="Write a review of the book"></textarea><br>
+    <input type="range" id="rating" name="rating" min="0" max=5>
+    <label for="rating">Rating</label>
+    <button type="submit">submit</button> 
+ </form>
+ {%if message!=None %}
+      {%if message[0]=='T' %}
+      <div class="alert alert-success" role="alert">
+        {{message}}
+      </div>
+      {%endif%}
+      {%if message[0]=='A' %}
+      <div class="alert alert-danger" role="alert">
+        {{message}}
+      </div>
+      {%endif%}
+{%endif%}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
