@@ -102,4 +102,6 @@ def api(isbn):
     dicto['average_score']=reto['average_rating']
     return jsonify(dicto)
 
-
+if __name__=='__main__':
+    app.run(debug=True)
+    
