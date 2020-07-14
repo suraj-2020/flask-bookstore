@@ -6,4 +6,4 @@ TO RUN ON LOCAL MACHINE:
 Clone the repository
 create a virtual enviroment(recommended)
 pip install requirements.txt
-python application.py (to run)
+python app.py (to run)
